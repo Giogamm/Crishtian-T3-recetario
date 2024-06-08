@@ -37,6 +37,7 @@ let recetas = [
     imagen: "img//gelatina de choco fresa.webp",
     descripcion: "gelatina de chocofresa",
   },
+
 ];
 
 // Obtén el elemento del DOM donde quieres insertar las recetas
@@ -46,15 +47,19 @@ let carrusel = document.querySelector(".carrusel");
 recetas.forEach((receta) => {
   let img = document.createElement("img");
   img.src = receta.imagen;
-  img.alt = receta.descripcion;
 
   let p = document.createElement("p");
   p.textContent = receta.descripcion;
 
+  let divDescripcion = document.createElement("div");
+  divDescripcion.appendChild(p);
+  
+  // Asigna la clase después de crear divDescripcion
+  divDescripcion.className = "descripcion";
+
   let div = document.createElement("div");
-  div.className = "slide";
   div.appendChild(img);
-  div.appendChild(p);
+  div.appendChild(divDescripcion);
 
   carrusel.appendChild(div);
 });
@@ -81,24 +86,24 @@ function mostrarReceta(indice) {
   // añade la nueva receta al carrusel
   carrusel.appendChild(div);
 
-  // Agrega la clase "slide-out" a la imagen anterior para que se deslice hacia la izquierda
+  
   let previousSlide = carrusel.querySelector(".slide:not(.slide-out)");
   if (previousSlide) previousSlide.classList.add("slide-out");
 }
 function siguienteReceta() {
-  indiceActual = (indiceActual + 1) % recetas.length; // avanza al siguiente índice, pero vuelve a 0 si llega al final
-  mostrarReceta(indiceActual); // cambia la imagen que se muestra
+  indiceActual = (indiceActual + 1) % recetas.length; 
+  mostrarReceta(indiceActual); 
   let img = document.querySelector("img");
-  img.style.animation = "carrusel-entrada 0.6s ease-in-out forwards"; // Agrega la animación aquí
+  img.style.animation = "carrusel-entrada 0.6s ease-in-out forwards"; 
 }
 
 function recetaAnterior() {
   indiceActual = (indiceActual - 1 + recetas.length) % recetas.length; // retrocede al índice anterior, pero va al final si llega a 0
-  mostrarReceta(indiceActual); // cambia la imagen que se muestra
+  mostrarReceta(indiceActual); 
   let img = document.querySelector("img");
-    img.style.animation = "carrusel-salida 0.6s ease-in-out forwards"; // Agrega la animación aquí
+    img.style.animation = "carrusel-salida 0.6s ease-in-out forwards";
 }
-// añade event listeners a tus imágenes de flecha
+
 document
   .querySelector(".flecha-izquierda")
   .addEventListener("click", recetaAnterior);

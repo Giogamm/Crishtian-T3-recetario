@@ -243,3 +243,11 @@ nav a:hover {
     opacity: 1;
   }
 }
+
+.descripcion {
+  color: #333; /* Cambia el color del texto */
+  font-size: 16px; /* Cambia el tamaño del texto */
+  padding: 10px; /* Añade un poco de espacio alrededor del texto */
+  background-color: #f8f8f8; /* Cambia el color de fondo */
+  border-radius: 4px; /* Hace que las esquinas sean redondeadas */
+}
