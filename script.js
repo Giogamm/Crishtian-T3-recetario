@@ -85,17 +85,19 @@ function mostrarReceta(indice) {
   let previousSlide = carrusel.querySelector(".slide:not(.slide-out)");
   if (previousSlide) previousSlide.classList.add("slide-out");
 }
-
 function siguienteReceta() {
   indiceActual = (indiceActual + 1) % recetas.length; // avanza al siguiente índice, pero vuelve a 0 si llega al final
-  mostrarReceta(indiceActual);
+  mostrarReceta(indiceActual); // cambia la imagen que se muestra
+  let img = document.querySelector("img");
+  img.style.animation = "carrusel-entrada 0.6s ease-in-out forwards"; // Agrega la animación aquí
 }
 
 function recetaAnterior() {
   indiceActual = (indiceActual - 1 + recetas.length) % recetas.length; // retrocede al índice anterior, pero va al final si llega a 0
-  mostrarReceta(indiceActual);
+  mostrarReceta(indiceActual); // cambia la imagen que se muestra
+  let img = document.querySelector("img");
+    img.style.animation = "carrusel-salida 0.6s ease-in-out forwards"; // Agrega la animación aquí
 }
-
 // añade event listeners a tus imágenes de flecha
 document
   .querySelector(".flecha-izquierda")
