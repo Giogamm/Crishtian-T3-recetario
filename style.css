@@ -1,113 +1,194 @@
-@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Asegura que no haya desbordamiento horizontal */
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background: #FFF5BA; /* Vainilla */
+    margin: 0;
+    
 }
 
-.grid-container {
-  display: grid;
-  gap: 20px;
-  grid-template:
-    "navbar" auto
-    "sidebar" auto
-    "main" auto
-    "footer" auto;
-  padding: 20px; /* Añadir padding al contenedor de la cuadrícula */
+.container {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "sidebar"
+        "main"
+        "footer";
+    gap: 20px;
+    /* padding: 20px; */
 }
 
-.grid-container > * {
-  box-shadow: 10px 6px 37px -13px rgba(51, 51, 51, 0.74);
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  font-weight: 500;
-  overflow: hidden; /* Asegura que el contenido no cause desbordamiento */
+.header {
+    grid-area: header;
+    background: #FF6384; /* Fruta */
+    padding: 10px;
+    text-align: center;
 }
 
 .navbar {
-  grid-area: navbar;
-  background-color: rgba(46, 105, 241, 0.74);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar ul {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%; /* Asegura que la lista ocupe todo el ancho de la navbar */
-  padding: 0;
-  list-style: none;
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
 }
 
-.navbar ul li {
-  margin: 0 10px; /* Ajuste de márgenes para que los elementos no se amontonen */
+.menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.4s;
 }
 
 .nav-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan en líneas múltiples si es necesario */
+    list-style: none;
+    display: flex;
+    gap: 15px;
 }
 
+
+
 .nav-list a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 500;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-list a:hover {
+    background: rgba(0, 0, 0, 0.2);
 }
 
 /* Sidebar */
 .sidebar {
-  grid-area: sidebar;
-  background-color: rgba(77, 237, 106, 0.74);
+    grid-area: sidebar;
+    background: #B8E986; /* Menta */
+    padding: 10px;
+    text-align: center;
 }
 
 /* Main */
 .main {
-  grid-area: main;
-  background-color: #f5f5f5;
-  width: 100%; /* Asegurarse de que el main ocupe todo el ancho disponible */
+    grid-area: main;
+    background: #FAD8D6; /* Crema */
+    padding: 20px;
+    text-align: center;
 }
 
 /* Footer */
 .footer {
-  grid-area: footer;
-  background-color: rgba(237, 123, 67, 0.74);
+    grid-area: footer;
+    background: #F5A623; /* Caramelo */
+    padding: 10px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        position: relative;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-list {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #FF6384; /* Fruta */
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        gap: 0;
+    }
+
+    .nav-list li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .nav-list li a {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
 }
 
 @media (min-width: 768px) {
-  .grid-container {
-    grid-template:
-      "navbar navbar" 120px
-      "sidebar main" auto
-      "footer footer" 100px/
-      200px auto;
-  }
+    .container {
+        grid-template-areas:
+            "header header"
+            "sidebar main"
+            "footer footer";
+        grid-template-columns: 1fr 2fr;
+    }
 }
 
-@media (min-width: 992px) {
-  .grid-container {
-    grid-template:
-      "navbar navbar navbar" 120px
-      "navbar main sidebar" auto
-      "footer footer footer" 100px/
-      200px auto 200px;
-  }
+@media (min-width: 1024px) {
+    .container {
+        grid-template-areas:
+            "header header header"
+            "sidebar main main"
+            "footer footer footer";
+        grid-template-columns: 1fr 2fr 2fr;
+    }
 }
+
+/* *maquetación terminada */
+
+
+
+nav h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+   border-bottom: 2px solid white;
+}
+
+
+nav a:hover {
+  color: white;
+  border-radius: 5px;
+}
+
+.nav-list a {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-list a::after {
+  /* se crea un pseudo elemento after que será visible cuando se haga hover */
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-list a:hover::after {
+  width: 100%;
+}
+

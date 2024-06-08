@@ -4,22 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Responsive Layout</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 
-<body class="grid-container">
-    <nav class="navbar">
-        <ul class="nav-list">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-    <aside class="sidebar">SIDEBAR</aside>
-    <article class="main">MAIN</article>
-    <footer class="footer">FOOTER</footer>
+<body>
+    <div class="container">
+        <header class="header">
+            <nav class="navbar">
+                <h2>Recetario: Postres</h2>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <aside class="sidebar">SIDEBAR</aside>
+        <main class="main">MAIN CONTENT</main>
+        <footer class="footer">FOOTER</footer>
+    </div>
 </body>
 
 </html>
