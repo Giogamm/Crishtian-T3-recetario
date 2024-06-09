@@ -23,24 +23,28 @@ let recetas = [
     descripcion: "Flan Napolitano",
     tiempo: "⏰: 30 minutos",
     dificultad: "Dificultad: Fácil",
+    video: "https://www.youtube.com/watch?v=HhNiEkn_Bws",
   },
   {
     imagen: "img/brownie.webp",
     descripcion: "Brownie",
     tiempo: "⏰: 45 minutos",
     dificultad: "Dificultad: Media",
+    video: "https://www.youtube.com/watch?v=Xv4ibRE_ZQA",
   },
   {
     imagen: "img/flan.webp",
     descripcion: "Flan",
     tiempo: "⏰: 60 minutos",
     dificultad: "Dificultad: Media",
+    video: "https://www.youtube.com/watch?v=0KAgtWeNtsI",
   },
   {
     imagen: "img/gelatina de choco fresa.webp",
     descripcion: "Gelatina de Chocofresa",
     tiempo: "⏰: 20 minutos",
     dificultad: "Dificultad: Fácil",
+    video: "https://www.youtube.com/watch?v=fuHEql_fjH8",
   },
 ];
 
@@ -72,6 +76,12 @@ recetas.forEach((receta) => {
   let div = document.createElement("div");
   div.appendChild(img);
   div.appendChild(divDescripcion);
+
+    // Añadir evento de clic para enviar al video correspondiente
+    img.addEventListener("click", () => {
+      window.location.href = receta.video; // Redirigir al enlace de YouTube
+    });
+  
 
   carrusel.appendChild(div);
 });
@@ -109,6 +119,9 @@ function mostrarReceta(indice) {
   div.appendChild(img);
   div.appendChild(divDescripcion);
  
+  img.addEventListener("click", () => {
+    window.location.href = receta.video; // Redirigir al enlace de YouTube
+  });
 
 
   carrusel.appendChild(div);
@@ -145,3 +158,5 @@ document
 
 // Muestra la primera receta al cargar la página
 mostrarReceta(indiceActual);
+
+
