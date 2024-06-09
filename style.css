@@ -212,7 +212,11 @@ nav a:hover {
 .carrusel img {
   border-radius: 20px;
   height: 150px;
-  margin: 20px;
+  width: 293px;
+
+  
+  
+
 }
 
 @keyframes carrusel-entrada {
@@ -244,10 +248,50 @@ nav a:hover {
   }
 }
 
-.descripcion {
-  color: #333; /* Cambia el color del texto */
-  font-size: 16px; /* Cambia el tamaño del texto */
-  padding: 10px; /* Añade un poco de espacio alrededor del texto */
-  background-color: #f8f8f8; /* Cambia el color de fondo */
-  border-radius: 4px; /* Hace que las esquinas sean redondeadas */
+
+.carrusel{
+  display: grid;
+  place-items: center;
+ overflow: hidden;
+ 
+}
+
+
+.carrusel div p {
+  color: #333; 
+  font-size: 16px; 
+
+  background-color: #FAFAF5;
+  border-radius: 10px;
+  height: 70px;
+  width: 293px;
+  position: relative;
+  top: -30px;
+  z-index: 3;
+
+  
+
+}
+
+.carrusel div .tiempo{
+position: relative;
+top: -60px;
+z-index: 3;
+left: -20px;
+
+}
+
+
+.carrusel div img{
+  position: relative;
+  z-index: 0;
+}
+
+.carrusel div .dificultad{
+  position: relative;
+  left: 9px;
+  top: -59px;
+
+  z-index: 3;
+
 }
