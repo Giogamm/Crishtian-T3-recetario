@@ -1,151 +1,32 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const menu = document.querySelector("#mobile-menu");
-  const navList = document.querySelector(".nav-list");
-
-  menu.addEventListener("click", () => {
-    if (navList.classList.contains("active")) {
-      navList.style.animation = "salida 0.2s ease-in-out forwards";
-      setTimeout(() => {
-        navList.classList.remove("active");
-        navList.classList.remove("salida");
-      }, 300);
-    } else {
-      navList.style.animation = "entrada 0.2s ease-in-out forwards";
-      navList.classList.add("active");
-    }
-  });
-});
-
-// Array de objetos, cada uno representa una receta
-let recetas = [
-  {
-    imagen: "img/flan napolitano.webp",
-    descripcion: "Flan Napolitano",
-    tiempo: "⏰: 30 minutos",
-    dificultad: "Dificultad: Fácil",
-    video: "https://www.youtube.com/watch?v=HhNiEkn_Bws",
-  },
-  {
-    imagen: "img/brownie.webp",
-    descripcion: "Brownie",
-    tiempo: "⏰: 45 minutos",
-    dificultad: "Dificultad: Media",
-    video: "https://www.youtube.com/watch?v=Xv4ibRE_ZQA",
-  },
-  {
-    imagen: "img/flan.webp",
-    descripcion: "Flan",
-    tiempo: "⏰: 60 minutos",
-    dificultad: "Dificultad: Media",
-    video: "https://www.youtube.com/watch?v=0KAgtWeNtsI",
-  },
-  {
-    imagen: "img/gelatina de choco fresa.webp",
-    descripcion: "Gelatina de Chocofresa",
-    tiempo: "⏰: 20 minutos",
-    dificultad: "Dificultad: Fácil",
-    video: "https://www.youtube.com/watch?v=fuHEql_fjH8",
-  },
-];
-
-// Obtén el elemento del DOM donde quieres insertar las recetas
-let carrusel = document.querySelector(".carrusel");
-let divDescripcion;
-
-// Genera el HTML para cada receta y añádelo al carrusel
-recetas.forEach((receta) => {
-  let img = document.createElement("img");
-  img.src = receta.imagen;
-
-  let p = document.createElement("p");
-  p.textContent = receta.descripcion;
-
-  let spanTiempo = document.createElement("span");
-  spanTiempo.textContent = receta.tiempo;
-  spanTiempo.classList.add("tiempo");
-
-  let spanDificultad = document.createElement("span");
-  spanDificultad.textContent = receta.dificultad;
-  spanDificultad.classList.add("dificultad");
-
-  let divDescripcion = document.createElement("div");
-  divDescripcion.appendChild(p);
-  divDescripcion.appendChild(spanTiempo);
-  divDescripcion.appendChild(spanDificultad);
-
-  let div = document.createElement("div");
-  div.appendChild(img);
-  div.appendChild(divDescripcion);
-
-    // Añadir evento de clic para enviar al video correspondiente
-    img.addEventListener("click", () => {
-      window.location.href = receta.video; // Redirigir al enlace de YouTube
-    });
-  
-
-  carrusel.appendChild(div);
-});
-
 let indiceActual = 0;
+const recetas = Array.from(document.querySelectorAll(".carrusel-item"));
 
 function mostrarReceta(indice) {
-  // Limpia el carrusel
-  carrusel.innerHTML = "";
-
-  // Obtén la receta y crea el HTML
-  let receta = recetas[indice];
-  let img = document.createElement("img");
-  img.src = receta.imagen;
-  img.alt = receta.descripcion;
-
-  let p = document.createElement("p");
-  p.textContent = receta.descripcion;
-
-  let spanTiempo = document.createElement("span");
-  spanTiempo.textContent = receta.tiempo;
-  spanTiempo.classList.add("tiempo");
-
-  let spanDificultad = document.createElement("span");
-  spanDificultad.textContent = receta.dificultad;
-  spanDificultad.classList.add("dificultad");
-
-  let divDescripcion = document.createElement("div");
-  divDescripcion.appendChild(p);
-  divDescripcion.appendChild(spanTiempo);
-  divDescripcion.appendChild(spanDificultad);
-
-
-  let div = document.createElement("div");
-  div.appendChild(img);
-  div.appendChild(divDescripcion);
- 
-  img.addEventListener("click", () => {
-    window.location.href = receta.video; // Redirigir al enlace de YouTube
+  recetas.forEach((receta, index) => {
+    if (index === indice) {
+      receta.classList.add("carrusel-entrada");
+      setTimeout(() => {
+        receta.classList.remove("carrusel-entrada");
+      }, 600); // Eliminar la animación de entrada después del tiempo de duración
+    } else {
+      receta.classList.remove("carrusel-entrada");
+      receta.classList.remove("carrusel-salida");
+    }
   });
-
-
-  carrusel.appendChild(div);
-
-  
 }
 
 function siguienteReceta() {
+  recetas[indiceActual].classList.add("carrusel-salida");
   indiceActual = (indiceActual + 1) % recetas.length;
   mostrarReceta(indiceActual);
- let img = document.querySelector("img");
- let div = document.querySelector(".carrusel div div");
-  div.style.animation = "carrusel-entrada 0.6s forwards";
-  img.style.animation = "carrusel-entrada 0.6s forwards";
+  recetas[indiceActual].style.animation = "carrusel-salida 0.6s forwards";
 }
 
 function recetaAnterior() {
+  recetas[indiceActual].classList.add("carrusel-salida");
   indiceActual = (indiceActual - 1 + recetas.length) % recetas.length;
   mostrarReceta(indiceActual);
-   let div = document.querySelector(".carrusel div div");
-   let img = document.querySelector("img");
-   img.style.animation = "carrusel-salida 0.6s forwards";
-   div.style.animation = "carrusel-salida 0.6s forwards";
-
+  recetas[indiceActual].style.animation = "carrusel-entrada 0.6s forwards";
 }
 
 // Añadir eventos de clic a las flechas
@@ -159,44 +40,38 @@ document
 // Muestra la primera receta al cargar la página
 mostrarReceta(indiceActual);
 
-// !navegación	
+// !navegación
 
-const checkIsNavigationSuported = () =>{
-  return Boolean (document.StarViewTransition)
-}
+const checkIsNavigationSuported = () => {
+  return Boolean(document.StarViewTransition);
+};
 
 const fetchPage = async (url) => {
- const  response = await fetch(url) 
- const text = await response.text()
- const [, data] = text.match(/<body>([\s\S]+)<\/body>/)
-  return data
-}
+  const response = await fetch(url);
+  const text = await response.text();
+  const [, data] = text.match(/<body>([\s\S]+)<\/body>/);
+  return data;
+};
 
 const StarViewTransition = () => {
-   if (!checkIsNavigationSuported()) return
-   window.navigation.addEventListener('navigate', (event) => {
-  const toUrl = new URL(event.detail.to)
-  
-  // es una pagina externa? si es asi lo ignoramos
-  if (toUrl.origin !== window.location.origin) return
+  if (!checkIsNavigationSuported()) return;
+  window.navigation.addEventListener("navigate", (event) => {
+    const toUrl = new URL(event.detail.to);
 
-  // si es una navegación interna
-  event.intercept({
-    async headler() {
+    // es una pagina externa? si es asi lo ignoramos
+    if (toUrl.origin !== window.location.origin) return;
 
-      const data = await fetchPage(toUrl.pathname)
+    // si es una navegación interna
+    event.intercept({
+      async headler() {
+        const data = await fetchPage(toUrl.pathname);
 
-      // utilizar la api de view transition
-      document.StarViewTransition(() => {
-        document.body.innerHTML = data
-        document.documentElement.scrollTop = 0;
-      
-      })
-    }
-  })
-})
-
-
-
-   
-}
+        // utilizar la api de view transition
+        document.StarViewTransition(() => {
+          document.body.innerHTML = data;
+          document.documentElement.scrollTop = 0;
+        });
+      },
+    });
+  });
+};

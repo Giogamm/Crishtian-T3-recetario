@@ -546,3 +546,8 @@ background-color: #ef5576;
 .ingredientes{
     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
+
+a{
+    text-decoration: none;
+    
+}
