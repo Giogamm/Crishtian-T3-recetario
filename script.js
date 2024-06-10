@@ -159,4 +159,44 @@ document
 // Muestra la primera receta al cargar la página
 mostrarReceta(indiceActual);
 
+// !navegación	
 
+const checkIsNavigationSuported = () =>{
+  return Boolean (document.StarViewTransition)
+}
+
+const fetchPage = async (url) => {
+ const  response = await fetch(url) 
+ const text = await response.text()
+ const [, data] = text.match(/<body>([\s\S]+)<\/body>/)
+  return data
+}
+
+const StarViewTransition = () => {
+   if (!checkIsNavigationSuported()) return
+   window.navigation.addEventListener('navigate', (event) => {
+  const toUrl = new URL(event.detail.to)
+  
+  // es una pagina externa? si es asi lo ignoramos
+  if (toUrl.origin !== window.location.origin) return
+
+  // si es una navegación interna
+  event.intercept({
+    async headler() {
+
+      const data = await fetchPage(toUrl.pathname)
+
+      // utilizar la api de view transition
+      document.StarViewTransition(() => {
+        document.body.innerHTML = data
+        document.documentElement.scrollTop = 0;
+      
+      })
+    }
+  })
+})
+
+
+
+   
+}
