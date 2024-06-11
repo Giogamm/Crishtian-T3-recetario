@@ -1,77 +1,58 @@
 let indiceActual = 0;
-const recetas = Array.from(document.querySelectorAll(".carrusel-item"));
+let recetas = [];
 
-function mostrarReceta(indice) {
-  recetas.forEach((receta, index) => {
-    if (index === indice) {
-      receta.classList.add("carrusel-entrada");
-      setTimeout(() => {
-        receta.classList.remove("carrusel-entrada");
-      }, 600); // Eliminar la animación de entrada después del tiempo de duración
-    } else {
-      receta.classList.remove("carrusel-entrada");
-      receta.classList.remove("carrusel-salida");
-    }
+document.addEventListener("DOMContentLoaded", inicializarCarrusel);
+
+document.addEventListener("contentUpdated", () => {
+  inicializarCarrusel();
+  inicializarDOM();
+});
+
+function inicializarCarrusel() {
+  recetas = Array.from(document.querySelectorAll(".carrusel-item"));
+  if (recetas.length > 0) {
+    inicializarDOM();
+  }
+}
+
+function inicializarDOM() {
+  const carrusel = document.querySelector(".carrusel");
+  const flechaIzquierda = document.querySelector(".flecha-izquierda");
+  const flechaDerecha = document.querySelector(".flecha-derecha");
+
+  mostrarReceta(indiceActual); // Mostrar primera receta al cargar la página
+
+  flechaDerecha.addEventListener("click", () => {
+    siguienteReceta();
+  });
+  flechaIzquierda.addEventListener("click", () => {
+    recetaAnterior();
   });
 }
 
-function siguienteReceta() {
-  recetas[indiceActual].classList.add("carrusel-salida");
-  indiceActual = (indiceActual + 1) % recetas.length;
-  mostrarReceta(indiceActual);
-  recetas[indiceActual].style.animation = "carrusel-salida 0.6s forwards";
+function mostrarReceta(indice) {
+  const carrusel = document.querySelector(".carrusel");
+  carrusel.innerHTML = ""; // Limpiar contenido anterior
+  const receta = recetas[indice];
+  const divReceta = receta.cloneNode(true);
+  divReceta.style.animation = "carrusel-entrada 0.6s forwards";
+  carrusel.appendChild(divReceta); // Agregar receta clonada
+
+  setTimeout(() => {
+    divReceta.style.animation = ""; // Eliminar la animación después del tiempo de duración
+  }, 600);
 }
 
-function recetaAnterior() {
-  recetas[indiceActual].classList.add("carrusel-salida");
-  indiceActual = (indiceActual - 1 + recetas.length) % recetas.length;
+function siguienteReceta() {
+  recetas[indiceActual].style.animation = "carrusel-salida 0.6s forwards";
+  indiceActual = (indiceActual + 1) % recetas.length;
   mostrarReceta(indiceActual);
   recetas[indiceActual].style.animation = "carrusel-entrada 0.6s forwards";
 }
 
-// Añadir eventos de clic a las flechas
-document
-  .querySelector(".flecha-izquierda")
-  .addEventListener("click", recetaAnterior);
-document
-  .querySelector(".flecha-derecha")
-  .addEventListener("click", siguienteReceta);
-
-// Muestra la primera receta al cargar la página
-mostrarReceta(indiceActual);
-
-// !navegación
-
-const checkIsNavigationSuported = () => {
-  return Boolean(document.StarViewTransition);
-};
-
-const fetchPage = async (url) => {
-  const response = await fetch(url);
-  const text = await response.text();
-  const [, data] = text.match(/<body>([\s\S]+)<\/body>/);
-  return data;
-};
-
-const StarViewTransition = () => {
-  if (!checkIsNavigationSuported()) return;
-  window.navigation.addEventListener("navigate", (event) => {
-    const toUrl = new URL(event.detail.to);
-
-    // es una pagina externa? si es asi lo ignoramos
-    if (toUrl.origin !== window.location.origin) return;
-
-    // si es una navegación interna
-    event.intercept({
-      async headler() {
-        const data = await fetchPage(toUrl.pathname);
-
-        // utilizar la api de view transition
-        document.StarViewTransition(() => {
-          document.body.innerHTML = data;
-          document.documentElement.scrollTop = 0;
-        });
-      },
-    });
-  });
-};
+function recetaAnterior() {
+  recetas[indiceActual].style.animation = "carrusel-salida 0.6s forwards";
+  indiceActual = (indiceActual - 1 + recetas.length) % recetas.length;
+  mostrarReceta(indiceActual);
+  recetas[indiceActual].style.animation = "carrusel-entrada 0.6s forwards";
+}

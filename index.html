@@ -151,66 +151,9 @@
         </footer>
     </div>
     <script src="script.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-                const carrusel = document.querySelector(".carrusel");
-                const recetas = document.querySelectorAll(".recetas");
-                const flechaIzquierda = document.querySelector(".flecha-izquierda");
-                const flechaDerecha = document.querySelector(".flecha-derecha");
+   <script src="viewTransition.js"></script>
 
-                let indiceActual = 0;
-                const mostrarReceta = (indice) => {
-                    carrusel.innerHTML = ""; // Limpiar contenido anterior
-                    const receta = recetas[indice];
-                    carrusel.appendChild(receta.cloneNode(true)); // Agregar receta clonada
-                };
 
-                const siguienteReceta = () => {
-                    indiceActual = (indiceActual + 1) % recetas.length;
-                    mostrarReceta(indiceActual);
-                };
-
-                const recetaAnterior = () => {
-                    indiceActual = (indiceActual - 1 + recetas.length) % recetas.length;
-                    mostrarReceta(indiceActual);
-                };
-
-                flechaDerecha.addEventListener("click", siguienteReceta);
-                flechaIzquierda.addEventListener("click", recetaAnterior);
-
-                mostrarReceta(indiceActual); // Mostrar primera receta al cargar la página
-            });
-
-        if (document.startViewTransition) {
-            window.navigation.addEventListener('navigate', (event) => {
-                const toUrl = new URL(event.destination.url);
-
-                // Es una página externa? Si es así, lo ignoramos
-                if (location.origin !== toUrl.origin) return;
-
-                // Si es una navegación en el mismo dominio (origen)
-                event.intercept({
-                    async handler() {
-                        // Vamos a cargar la página de destino
-                        // Utilizando un fetch para obtener el HTML
-                        const response = await fetch(toUrl.pathname);
-                        const text = await response.text();
-
-                        // Quedarnos sólo con el contenido del HTML dentro de la etiqueta body
-                        // Usamos una regex para extraerlo
-                        const [, data] = text.match(/<body>([\s\S]*)<\/body>/i);
-
-                        // Utilizar la API de View Transition
-                        document.startViewTransition(() => {
-                            // El scroll hacia arriba del todo
-                            document.body.innerHTML = data;
-                            document.documentElement.scrollTop = 0;
-                        });
-                    }
-                });
-            });
-        }
-    </script>
 </body>
 
 </html>
