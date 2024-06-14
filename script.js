@@ -65,3 +65,21 @@ function recetaAnterior() {
         recetas[indiceActual].style.animation = "carrusel-entrada 0.6s forwards";
     }, 600); // Duración de la animación
 }
+
+//abrir y cerrar el menu
+
+
+function inicializarMenu() {
+  const menuToggle = document.getElementById("mobile-menu");
+  const navList = document.querySelector(".nav-list");
+
+  menuToggle.addEventListener("click", () => {
+    navList.classList.toggle("active");
+  });
+
+  window.addEventListener("click", (event) => {
+    if (!navList.contains(event.target) && !menuToggle.contains(event.target)) {
+      navList.classList.remove("active");
+    }
+  });
+}

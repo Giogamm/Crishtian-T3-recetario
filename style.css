@@ -267,7 +267,7 @@ nav a:hover {
   color: #333;
   font-size: 16px;
 
-  background-color: #fafaf5;
+  background-color: #ecece3;
   border-radius: 10px;
   height: 70px;
   width: 293px;
@@ -550,4 +550,12 @@ background-color: #ef5576;
 a{
     text-decoration: none;
     
+}
+
+#imagen1{
+  view-transition-name: image;
+}
+
+#imagen2{
+  view-transition-name: image;
 }
