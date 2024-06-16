@@ -58,6 +58,7 @@ body {
   gap: 15px;
 }
 
+
 .nav-list a {
   text-decoration: none;
   color: white;
@@ -558,4 +559,49 @@ a{
 
 #imagen2{
   view-transition-name: image;
+}
+
+
+/* sección de fernanda */
+
+.conteFer img{
+    height: 120px;
+}
+.conteFer h2{
+text-align: center;
+
+ text-decoration: rgb(248, 147, 214) underline 2px;
+
+}
+ 
+
+
+.conteFer p{
+    padding: 20px;
+}
+
+
+.conteFer img{
+    transition: all .3s ease-in-out;
+}
+.conteFer img:hover{
+   scale: 1.03;
+}
+
+.fondoBlanco li{
+ list-style: none;
+    
+}
+
+.fondoBlanco{
+    background-color: aliceblue;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    display: inline-block;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.fondoBlanco li{
+    margin-bottom: 10px;
 }
