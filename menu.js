@@ -12,10 +12,12 @@ function inicializarMenu() {
     //ponerle display block
     navList.style.display = "block";
   });
-
-  window.addEventListener("click", (event) => {
-    if (!navList.contains(event.target) && !menuToggle.contains(event.target)) {
-      navList.style.display = "none";
+window.addEventListener("click", (event) => {
+    // si le vuelvo a dar click al boton se oculta solo para celular
+    if (window.innerWidth <= 768) {
+        if (event.target !== menuToggle) {
+            navList.style.display = "none";
+        }
     }
-  });
+});
 }

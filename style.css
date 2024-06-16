@@ -120,8 +120,19 @@ body {
     align-items: center;
     display: none;
     gap: 0;
+    animation: entrada 0.1s forwards;
   }
-
+  @keyframes entrada {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+  }
   .nav-list li {
     width: 100%;
     text-align: center;
