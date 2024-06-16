@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", inicializarCarrusel);
 document.addEventListener("contentUpdated", () => {
     inicializarCarrusel();
     inicializarDOM();
+    inicializarConversor();
 });
 
 function inicializarCarrusel() {
@@ -67,3 +68,49 @@ function recetaAnterior() {
 }
 
 
+
+function inicializarConversor() {
+  const convertButton = document.getElementById("convertButton");
+  if (convertButton) {
+    convertButton.addEventListener("click", convert);
+    console.log("Conversor inicializado");
+  } else {
+    console.log("Botón de conversión no encontrado");
+  }
+}
+
+function convert() {
+  const measureType = document.getElementById("measureType").value;
+  const inputValue = parseFloat(document.getElementById("inputValue").value);
+  let result;
+
+  if (isNaN(inputValue)) {
+    result = "Por favor, ingresa un número válido";
+  } else {
+    switch (measureType) {
+      case "tbspToGrams":
+        result = `${inputValue} Cucharada(s) = ${inputValue * 15} gramos`;
+        break;
+      case "cupToMl":
+        result = `${inputValue} Taza(s) = ${inputValue * 240} mililitros`;
+        break;
+      case "ozToGrams":
+        result = `${inputValue} Onza(s) = ${inputValue * 28.35} gramos`;
+        break;
+      case "tspToMl":
+        result = `${inputValue} Cucharadita(s) = ${
+          inputValue * 4.93
+        } mililitros`;
+        break;
+      default:
+        result = "Conversión no soportada";
+    }
+  }
+
+  document.getElementById("result").innerText = result;
+}
+
+function inicializarCarrusel() {
+  console.log("Inicializar carrusel");
+  // Aquí puedes agregar la lógica para inicializar el carrusel
+}

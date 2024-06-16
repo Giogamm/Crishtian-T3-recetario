@@ -6,6 +6,91 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>en construcción</h2>
+    <div class="container">
+        <header class="header">
+            <nav class="navbar">
+                <h2>Recetario: Postres</h2>
+                <div class="menu-toggle" id="mobile-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <ul class="nav-list">
+                    <li><a href="../../index.html">Inicio</a></li>
+                    <li><a href="../../html/historiaPostres.html">Historia</a></li>
+                    <li><a href="../../html/conversiones.html">Conversiones</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside class="sidebar">
+            <div class="sidebar-inner">
+<h2>Convierte tus Medidas</h2>
+<select id="measureType" class="select">
+    <option value="tbspToGrams">Cucharada a Gramos</option>
+    <option value="cupToMl">Taza a Mililitros</option>
+    <option value="ozToGrams">Onza a Gramos</option>
+    <option value="tspToMl">Cucharadita a Mililitros</option>
+</select>
+<input type="number" id="inputValue" placeholder="Ingresa el valor" class="input"/>
+<button onclick="convert()" class="convertidor">Convertir</button>
+<p id="result" class="resultado"></p>
+            </div>
+        </aside>
+
+
+   <main class="main">
+        <div class="conteConver">
+            <!-- poner el html para las converciones -->
+            <h2>Conversiones</h2>
+            <p>En la cocina, las conversiones son muy importantes para poder realizar las recetas de manera correcta. A
+                continuación, te presentamos una tabla con las conversiones más comunes.</p>
+            <table class="conversionesTabla">
+                <tr>
+                    <th>Medida</th>
+                    <th>Equivalencia</th>
+                </tr>
+                <tr>
+                    <td>1 taza</td>
+                    <td>240 ml</td>
+                </tr>
+                <tr>
+                    <td>1/2 taza</td>
+                    <td>120 ml</td>
+                </tr>
+                <tr>
+                    <td>1/3 taza</td>
+                    <td>80 ml</td>
+                </tr>
+                <tr>
+                    <td>1/4 taza</td>
+                    <td>60 ml</td>
+                </tr>
+                <tr>
+                    <td>1 cucharada</td>
+                    <td>15 ml</td>
+                </tr>
+                <tr>
+                    <td>1 cucharadita</td>
+                    <td>5 ml</td>
+                </tr>
+                <tr>
+                    <td>1 onza</td>
+                    <td>30 gr</td>
+                </tr>
+                <tr>
+                    <td>1 libra</td>
+                    <td>450 gr</td>
+                </tr>
+            </table>
+
+        </div>
+   </main>
+    </div>
+    <footer class="footer">
+        <p>© 2021 Recetario: Postres. Todos los derechos reservados</p>
+    </footer>
+
 </body>
+<script src="../conversor.js"></script>
 </html>
