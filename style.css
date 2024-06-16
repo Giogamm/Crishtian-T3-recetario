@@ -9,7 +9,7 @@
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
-  background: #fff5ba; /* Vainilla */
+     background: #ffe5e9; /* Rosa pastel */
   margin: 0;
 }
 
@@ -26,7 +26,7 @@ body {
 
 .header {
   grid-area: header;
-  background: #ff6384; /* Fruta */
+ background: #ff6384; /* Fruta */
   padding: 10px;
   text-align: center;
 }
@@ -88,7 +88,7 @@ body {
 /* Main */
 .main {
   grid-area: main;
-  background: #fad8d6; /* Crema */
+ background: #f7cac9; /* Rosa claro grisáceo */
   padding: 20px;
   text-align: center;
 }
@@ -96,7 +96,7 @@ body {
 /* Footer */
 .footer {
   grid-area: footer;
-  background: #f5a623; /* Caramelo */
+   background: #ff4d6d; /* Cereza oscuro */
   padding: 10px;
   text-align: center;
 }

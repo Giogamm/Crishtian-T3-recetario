@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", inicializarCarrusel);
 document.addEventListener("contentUpdated", () => {
     inicializarCarrusel();
     inicializarDOM();
-    inicializarMenu();
 });
 
 function inicializarCarrusel() {
@@ -67,22 +66,4 @@ function recetaAnterior() {
     }, 600); // Duración de la animación
 }
 
-//abrir y cerrar el menu 
-// !no funciona en el movil :(
 
-
-function inicializarMenu() {
-  const menuToggle = document.getElementById("mobile-menu");
-  const navList = document.querySelector(".nav-list");
-
-  menuToggle.addEventListener("click", () => {
-    //ponerle display block
-    navList.style.display = "block";
-  });
-
-  window.addEventListener("click", (event) => {
-    if (!navList.contains(event.target) && !menuToggle.contains(event.target)) {
-     navList.style.display = "none";
-    }
-  });
-}
